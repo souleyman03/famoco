@@ -22,7 +22,8 @@ if uploaded_file:
 
         # ✅ Charger logins depuis fichier VTO
         
-        logins_concernes = vto_df["LOGIN"].astype(str).str.tolist()
+        logins_concernes = vto_df["LOGIN"].astype(str).tolist()
+
         
 
         # ✅ Nettoyage des colonnes
