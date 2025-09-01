@@ -68,12 +68,10 @@ if uploaded_file:
         df_summary1 = df_summary1.fillna(0)
 
         # Ajouter la colonne TAUX DE NFC PVT
-        
-        
-        df_summary1["TAUX NFC PVT"] = df_summary1.apply(
-        lambda row: row["OPERATION NFC"] / row["TOTAL OPERATION"] if row["TOTAL OPERATION"] != 0 else 0,
-        axis=1
-)
+        df_summary1["TAUX DE NFC PVT"] = (
+            df_summary1["OPERATION NFC"] / df_summary1["TOTAL OPERATION"]
+        ).fillna(0).apply(lambda x: "{:.0%}".format(x))
+
 
 
         # 📊 Résumé par DR
