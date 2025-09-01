@@ -65,6 +65,8 @@ if uploaded_file:
             ["PVT"], as_index=False
         )[["OPERATION NFC", "OPERATION MANUELLE", "TOTAL OPERATION"]].sum()
 
+        df_summary1 = df_summary1.fillna(0)
+        
         # Ajouter la colonne TAUX DE NFC PVT
         df_summary1["TAUX DE NFC PVT"] = (
             df_summary1["OPERATION NFC"] / df_summary1["TOTAL OPERATION"]
