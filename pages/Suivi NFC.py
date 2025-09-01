@@ -61,7 +61,7 @@ if uploaded_file:
         
         # 📊 Résumé par PVT
         # Regrouper par PVT et sommer les opérations
-        df_summary1 = df.groupby(
+        df_summary1 = df_filtre.groupby(
             ["PVT"], as_index=False
         )[["OPERATION NFC", "OPERATION MANUELLE", "TOTAL OPERATION"]].sum()
 
@@ -78,7 +78,7 @@ if uploaded_file:
 
         # 📊 Résumé par DR
         # Regrouper par DR et sommer les opérations
-        df_summary2 = df.groupby(
+        df_summary2 = df_filtre.groupby(
             ["DR"], as_index=False
         )[["OPERATION NFC", "OPERATION MANUELLE", "TOTAL OPERATION"]].sum()
 
