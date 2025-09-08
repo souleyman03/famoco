@@ -72,6 +72,10 @@ if uploaded_file:
             ["PVT"], as_index=False
         )[["OPERATION NFC", "OPERATION MANUELLE", "TOTAL OPERATION"]].sum()
 
+        # Forcer les colonnes en numérique
+        df_summary1["OPERATION NFC"] = pd.to_numeric(df_summary1["OPERATION NFC"], errors="coerce")
+        df_summary1["TOTAL OPERATION"] = pd.to_numeric(df_summary1["TOTAL OPERATION"], errors="coerce")
+
         df_summary1 = df_summary1.fillna(0)
 
         # Ajouter la colonne TAUX DE NFC PVT
@@ -86,6 +90,11 @@ if uploaded_file:
         df_summary2 = df_filtre.groupby(
             ["DR"], as_index=False
         )[["OPERATION NFC", "OPERATION MANUELLE", "TOTAL OPERATION"]].sum()
+
+        # Forcer les colonnes en numérique
+        df_summary2["OPERATION NFC"] = pd.to_numeric(df_summary2["OPERATION NFC"], errors="coerce")
+        df_summary2["TOTAL OPERATION"] = pd.to_numeric(df_summary2["TOTAL OPERATION"], errors="coerce")
+
 
         # Ajouter la colonne TAUX DE NFC DR
         df_summary2["TAUX DE NFC DR"] = (
