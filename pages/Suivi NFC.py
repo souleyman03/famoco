@@ -41,7 +41,7 @@ if uploaded_file:
 
         # 🔍 Filtrage
         df_filtre = df[df['LOGIN'].isin(logins_concernes) ]
-
+        
         st.success("✅ Fichier filtré avec succès !")
         st.write("📊 Ventes via NFC :", df_filtre.shape[0], "lignes")
         st.dataframe(df_filtre)
@@ -51,6 +51,13 @@ if uploaded_file:
         df_summary = df_filtre.groupby(
             ["LOGIN", "DR", "PVT"], as_index=False
         )[["OPERATION NFC", "OPERATION MANUELLE", "TOTAL OPERATION"]].sum()
+
+        # Forcer les colonnes en numérique
+        df_summary["OPERATION NFC"] = pd.to_numeric(df_summary["OPERATION NFC"], errors="coerce")
+        df_summary["TOTAL OPERATION"] = pd.to_numeric(df_summary["TOTAL OPERATION"], errors="coerce")
+
+        # Remplacer les NaN par 0
+        df_summary = df_summary.fillna(0)
 
         # Ajouter la colonne TAUX DE NFC VTO
         df_summary["TAUX DE NFC VTO"] = (
