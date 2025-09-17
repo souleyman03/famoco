@@ -20,8 +20,10 @@ if uploaded_file:
             selected_sheet = st.selectbox("🗂️ Choisir la feuille à exploiter :", options=sheet_names)
             df = pd.read_excel(uploaded_file, sheet_name=selected_sheet)
 
+        # 🧹 Nettoyage des lignes doublon d'en-tête
+        df = df[df['LOGIN'] != 'LOGIN']
+
         # ✅ Charger logins depuis fichier VTO
-        
         logins_concernes = vto_df["LOGIN"].astype(str).tolist()
 
         
